@@ -1,0 +1,3 @@
+Sintax to use for cards (.txt files)
+1) Use only copies of them, original stays in CardSamples folder
+2) Name of the file must not contain any spaces or "-"

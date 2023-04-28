@@ -1,0 +1,15 @@
+C:\Users\Typik\REG\REG\bin\Debug\net6.0\REG.exe
+C:\Users\Typik\REG\REG\bin\Debug\net6.0\REG.deps.json
+C:\Users\Typik\REG\REG\bin\Debug\net6.0\REG.runtimeconfig.json
+C:\Users\Typik\REG\REG\bin\Debug\net6.0\REG.dll
+C:\Users\Typik\REG\REG\bin\Debug\net6.0\REG.pdb
+C:\Users\Typik\REG\REG\obj\Debug\net6.0\REG.csproj.AssemblyReference.cache
+C:\Users\Typik\REG\REG\obj\Debug\net6.0\REG.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Typik\REG\REG\obj\Debug\net6.0\REG.AssemblyInfoInputs.cache
+C:\Users\Typik\REG\REG\obj\Debug\net6.0\REG.AssemblyInfo.cs
+C:\Users\Typik\REG\REG\obj\Debug\net6.0\REG.csproj.CoreCompileInputs.cache
+C:\Users\Typik\REG\REG\obj\Debug\net6.0\REG.dll
+C:\Users\Typik\REG\REG\obj\Debug\net6.0\refint\REG.dll
+C:\Users\Typik\REG\REG\obj\Debug\net6.0\REG.pdb
+C:\Users\Typik\REG\REG\obj\Debug\net6.0\REG.genruntimeconfig.cache
+C:\Users\Typik\REG\REG\obj\Debug\net6.0\ref\REG.dll
