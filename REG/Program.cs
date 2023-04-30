@@ -18,34 +18,38 @@ namespace REG
     {
         static void Main(string[] args)
         {
-            string[] deckName = GetDeckName();
-            
-            switch (deckName.Length)
+            while (true)
             {
-                case 1:
-                    Deck deck1 = new Deck(deckName[0]);
-                    deck1.GetRandomCard();
+
+                string[] deckName = GetDeckName();
+                if (deckName[0] == "quit")
+                {
                     break;
-                case 2:
-                    try
-                    {
-                        int amnt = Convert.ToInt32(deckName[1]);
-                        Deck deck2 = new Deck(deckName[0], amnt);
-                        deck2.GetRandomCard(amnt);
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e);
-                        throw new Exception("Second parameter must be integer number that is greater than zero");
-                    }
-                    
-                    break;
-                default: throw new ArgumentException("Please follow the correct sintax \"<DeckName> <Integer>\" or \"<DeckName>\"");
+                }
+
+                switch (deckName.Length)
+                {
+                    case 1:
+                        Deck deck1 = new Deck(deckName[0]);
+                        deck1.GetRandomCard();
+                        break;
+                    case 2:
+                        try
+                        {
+                            int amnt = Convert.ToInt32(deckName[1]);
+                            Deck deck2 = new Deck(deckName[0], amnt);
+                            deck2.GetRandomCard(amnt);
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e);
+                            throw new Exception("Second parameter must be integer number that is greater than zero");
+                        }
+
+                        break;
+                    default: throw new ArgumentException("Please follow the correct sintax \"<DeckName> <Integer>\" or \"<DeckName>\"");
+                }
             }
-            /*
-            Deck deck = new Deck(deckName[0]);
-            deck.GetRandomCard();
-            */
         }
 
         static string[] GetDeckName()
