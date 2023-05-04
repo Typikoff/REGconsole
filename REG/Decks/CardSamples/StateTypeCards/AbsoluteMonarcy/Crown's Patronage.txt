@@ -1,0 +1,2 @@
+Get one random cultural masterpiece.
+Default card.

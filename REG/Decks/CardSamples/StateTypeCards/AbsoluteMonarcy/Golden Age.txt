@@ -1,0 +1,2 @@
+For 5 turns: get 2x Production, Minerals extravtion, Building speed and harvest.
+Default card.
