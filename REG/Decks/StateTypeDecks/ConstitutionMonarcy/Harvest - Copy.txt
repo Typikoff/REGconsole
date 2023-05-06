@@ -1,0 +1,2 @@
+For one turn: double all harvested plants (and mushrooms).
+Default card.

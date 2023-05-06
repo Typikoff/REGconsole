@@ -1,0 +1,2 @@
+For each active religious building: get 16 gold ingots and 64 bread.
+Default card.

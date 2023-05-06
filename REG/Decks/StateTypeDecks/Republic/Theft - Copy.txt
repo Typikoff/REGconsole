@@ -1,0 +1,2 @@
+Lose contents of one state chest.
+Default card.

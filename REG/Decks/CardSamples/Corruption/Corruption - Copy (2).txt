@@ -1,0 +1,2 @@
+One random resource intensive action take twice amount of resources.
+Default card.

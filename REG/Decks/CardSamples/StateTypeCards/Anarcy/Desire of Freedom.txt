@@ -1,0 +1,2 @@
+Choose a country. It get's -10% Happiness.
+Default card.

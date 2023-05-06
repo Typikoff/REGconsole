@@ -1,0 +1,2 @@
+Choose a country. Choose one of yours HSRs. Chosen country must adopt chosen HSR (optional).
+Default card.

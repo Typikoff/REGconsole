@@ -1,0 +1,2 @@
+Neigboring tribe joins your country as a Clan. If it does not exist, it "migrates" to you.
+Default card.

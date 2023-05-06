@@ -1,0 +1,2 @@
+For one turn: all of resource-intence actions have double price.
+Default card.

@@ -1,0 +1,2 @@
+Double all gold and emeralds, which are in the state trasury.
+Default card.

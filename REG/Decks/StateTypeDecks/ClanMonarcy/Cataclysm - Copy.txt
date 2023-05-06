@@ -1,0 +1,2 @@
+Your territory was struck by a Cataclism (types are specified by terrain and other factors).
+Default card.

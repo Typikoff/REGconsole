@@ -1,0 +1,2 @@
+Get Gold for each activ: boat - 1 ingot, mull or donkey - 2 ingots, horse or small ship - 3 ingots, battle ship - 5 ingots, trade ship - 1 block.
+Default card.

@@ -1,0 +1,2 @@
+Get one High Society Request (living conditions improovement demand). 1 - Social, 2 - Cultural, 3 - Working conditions, 4 - Living conditions, 5 - flexable and 6 - all 5 at the same time.
+Default card.

@@ -1,0 +1,2 @@
+Loose one of your active ships (if there is one).
+Default card.

@@ -1,0 +1,2 @@
+One random man in your country become a Kriminal. Types: 1 - Murder, 2 - Thief, 3 - Vandal, 4 - Traitor, 5 - Kidnapper, 6 - Terrorist. Inteligence from 1 to 6.
+Default card.

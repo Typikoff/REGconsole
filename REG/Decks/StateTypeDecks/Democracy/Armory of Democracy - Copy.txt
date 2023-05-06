@@ -1,0 +1,2 @@
+For each ranged weapon: get 16 best appropriate ammo.
+Default card.

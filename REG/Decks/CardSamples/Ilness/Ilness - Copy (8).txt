@@ -1,0 +1,2 @@
+One of your people is ill. There are 6 possibilities: 1-3 he'll be ok by himself. 4 - Folk Medicine needed. 5 - Potion of Healing (or Regen). 6 - uncurable illness.
+Default card.

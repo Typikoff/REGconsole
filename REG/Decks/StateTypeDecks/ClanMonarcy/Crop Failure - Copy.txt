@@ -1,0 +1,2 @@
+For one turn: get a half of all plants harvested (and mushrooms).
+Default card.

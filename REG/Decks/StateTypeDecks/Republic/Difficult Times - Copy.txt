@@ -1,0 +1,2 @@
+Revert one HSR by one level.
+Default card.

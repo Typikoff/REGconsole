@@ -1,0 +1,2 @@
+For 10 turns: Fleet, Aircraft and Siege mashines are constructed 2 times faster and cheaper.
+Default card.
