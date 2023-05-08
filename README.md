@@ -5,5 +5,5 @@ This app was created to automatize some aspects for our (myself and my sister) m
 The rules are basicly turning Minecraft into a strategy game, Civilization-like game
 With the Project growing larger, it's getting more and more harder to maintain some random events, which occured in every state every turn
 The Events are based on goverment type, amount of population and some laws
-Paper card system cann't be normally used at this point: it takes around one hour just to start a  turn
-So I put on my bravary and dedication to create this ambitious (for me) project.
+Paper card system cann't be normally used at this point: it takes around one hour just to start a turn
+So I put on my dedication and creativity to create this needfull (for me) project.
