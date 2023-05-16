@@ -30,8 +30,15 @@ namespace REG
                 switch (deckName.Length)
                 {
                     case 1:
-                        Deck deck1 = new Deck(deckName[0]);
-                        deck1.GetRandomCard();
+                        try
+                        {
+                            Deck deck1 = new Deck(deckName[0]);
+                            deck1.GetRandomCard();
+                        }
+                        catch (DirectoryNotFoundException)
+                        {
+                            Console.WriteLine($"Was unable to find a Deck called \"{deckName[0]}\"");
+                        }
                         break;
                     case 2:
                         try
@@ -40,14 +47,21 @@ namespace REG
                             Deck deck2 = new Deck(deckName[0], amnt);
                             deck2.GetRandomCard(amnt);
                         }
-                        catch (Exception e)
+                        catch (FormatException)
                         {
-                            Console.WriteLine(e);
-                            throw new Exception("Second parameter must be integer number that is greater than zero");
+                            Console.WriteLine("Second parameter must be an integer number that is greater than zero");
+                        }
+                        catch (DirectoryNotFoundException)
+                        {
+                            Console.WriteLine($"Was unable to find a Deck called \"{deckName[0]}\"");
                         }
 
                         break;
-                    default: throw new ArgumentException("Please follow the correct sintax \"<DeckName> <Integer>\" or \"<DeckName>\"");
+                    default:
+                        {
+                            Console.WriteLine("Please follow the correct sintax \"<DeckName> <Integer>\" or \"<DeckName>\"");
+                            break;
+                        }
                 }
             }
         }
