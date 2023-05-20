@@ -11,6 +11,7 @@ using System;
 using System.IO;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using System.Reflection.Metadata.Ecma335;
 
 namespace REG
 {
@@ -24,14 +25,21 @@ namespace REG
                 string[] deckName = GetDeckName();
                 if (deckName[0] == "quit")
                 {
-                    break;
+                    Environment.Exit(0);
                 }
 
                 switch (deckName.Length)
                 {
                     case 1:
-                        Deck deck1 = new Deck(deckName[0]);
-                        deck1.GetRandomCard();
+                        try
+                        {
+                            Deck deck1 = new Deck(deckName[0]);
+                            deck1.GetRandomCard();
+                        }
+                        catch (DirectoryNotFoundException)
+                        {
+                            Console.WriteLine($"Was unable to find a Deck called \"{deckName[0]}\"");
+                        }
                         break;
                     case 2:
                         try
@@ -40,14 +48,21 @@ namespace REG
                             Deck deck2 = new Deck(deckName[0], amnt);
                             deck2.GetRandomCard(amnt);
                         }
-                        catch (Exception e)
+                        catch (FormatException)
                         {
-                            Console.WriteLine(e);
-                            throw new Exception("Second parameter must be integer number that is greater than zero");
+                            Console.WriteLine("Second parameter must be an integer number that is greater than zero");
+                        }
+                        catch (DirectoryNotFoundException)
+                        {
+                            Console.WriteLine($"Was unable to find a Deck called \"{deckName[0]}\"");
                         }
 
                         break;
-                    default: throw new ArgumentException("Please follow the correct sintax \"<DeckName> <Integer>\" or \"<DeckName>\"");
+                    default:
+                        {
+                            Console.WriteLine("Please follow the correct sintax \"<DeckName> <Integer>\" or \"<DeckName>\"");
+                            break;
+                        }
                 }
             }
         }
@@ -58,7 +73,7 @@ namespace REG
             string? name = Console.ReadLine();
             if (name == null) { throw new ArgumentNullException("name"); }
 
-            if (name.Contains(' '))
+            if (name.Contains(' ')) // for multiple cards pick
             {
                 try
                 {
@@ -70,7 +85,7 @@ namespace REG
                     throw new Exception("Please follow the correct sintax \"<DeckName> <Integer>\"");
                 }
             }
-            else
+            else // for one-card pick
             {
                 string[] part = new string[1];
                 part[0] = name;
@@ -85,12 +100,14 @@ namespace REG
         public Deck(string pth) // constructor for StateTypeDecks
         {
             Path = stateDirPath + pth;
+            LastCardPickUpRaw = "";
             AmountOfCards = 1;
             Cards = Directory.GetFileSystemEntries(Path);
         }
         public Deck(string pth, int amnt) // constructor for PeoplePerRealmDecks
         {
             Path = pPRDirPath + pth;
+            LastCardPickUpRaw = "";
             AmountOfCards = amnt;
             Cards = Directory.GetFileSystemEntries(Path);
         }
@@ -101,14 +118,20 @@ namespace REG
         { get; }
         public int AmountOfCards
         { get; }
+        public string LastCardPickUpRaw
+        { get; set; }
         public override void GetRandomCard()
         {
             Random rnd = new Random();
             cardIndex = rnd.Next(Cards.Length);
             string card = Cards[cardIndex];
+            LastCardPickUpRaw = Cards[cardIndex];
+
             card = card.Split('-')[0]; // get rid of .txt extention and - Copy (number) postfix
             card = card.Split('\\')[filePathLength]; // get rid of file path
             Console.WriteLine(card);
+
+            GetUserReaction(LastCardPickUpRaw);
         }
         public override void GetRandomCard(int amount)
         {
@@ -124,11 +147,66 @@ namespace REG
                     amount--;
                     cardIndex = rnd.Next(Cards.Length);
                     string card = Cards[cardIndex];
+                    LastCardPickUpRaw = Cards[cardIndex];
+
                     card = card.Split('-')[0]; // get rid of .txt extention and - Copy (number) postfix
                     card = card.Split('\\')[filePathLength]; // get rid of file path
                     Console.WriteLine(card);
+
+                    GetUserReaction(LastCardPickUpRaw);
                 }
             }
+        }
+
+        private void GetUserReaction(string fullPath)
+        {
+            string? reaction = Console.ReadLine();
+            switch (reaction)
+            {
+                case "quit":
+                    Environment.Exit(0);
+                    break;
+                case "what":
+                    // card description
+                    Console.WriteLine(GetCardInfo(fullPath)[0]);
+                    break;
+                case "why":
+                    // card arrival note
+                    Console.WriteLine(GetCardInfo(fullPath)[1]);
+                    break;
+                case "what why":
+                    // description + arrival note
+                    Console.WriteLine(GetCardInfo(fullPath)[0]);
+                    Console.WriteLine(GetCardInfo(fullPath)[1]);
+                    break;
+            }
+
+
+        }
+
+        private string[] GetCardInfo(string fullPath) // returns card's description and arrival note packed in a string array
+        {
+            string[] cardInfo = new string[2];
+            if (File.Exists(fullPath))
+            {
+                try
+                {
+                    cardInfo = File.ReadAllLines(fullPath);
+                }
+                catch (ArgumentOutOfRangeException) // Arises when chosen file has  more ar less than two lines
+                {
+                    Console.WriteLine($"Flie called {fullPath} has invalid sintax!");
+                    cardInfo[0] = File.ReadAllLines(fullPath)[0];
+                    cardInfo[1] = File.ReadAllLines(fullPath)[0];
+                }
+            }
+            else // basicly mustn't happen
+            {
+                cardInfo[0] = "Invalid description";
+                cardInfo[1] = "No arrival note";
+                throw new FileNotFoundException();
+            }
+            return cardInfo;
         }
     }
 
