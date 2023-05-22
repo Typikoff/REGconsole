@@ -124,38 +124,47 @@ namespace REG
         {
             Random rnd = new Random();
             cardIndex = rnd.Next(Cards.Length);
-            string card = Cards[cardIndex];
-            LastCardPickUpRaw = Cards[cardIndex];
+
+            CardInteractions(cardIndex);
+        }
+        public override void GetRandomCard(int amount)
+        {
+            if (amount < 1 || amount >= Cards.Length)
+            {
+                Console.WriteLine("Please take numbers no less than one and less than the deck can maximum offer");
+            }
+            else
+            {
+                Random rnd = new Random();
+                int[] indexes = new int[amount];
+
+                while (amount != 0)
+                {
+                    cardIndex = rnd.Next(Cards.Length);
+                    if (indexes.Contains(cardIndex)) // this turns the possibility of peeking one card twice to zero
+                    {
+                        continue;
+                    }
+                    indexes[--amount] = cardIndex;
+                }
+
+                foreach (int index in indexes)
+                {
+                    CardInteractions(index);
+                }
+            }
+        }
+
+        private void CardInteractions(int index)
+        {
+            string card = Cards[index];
+            LastCardPickUpRaw = Cards[index];
 
             card = card.Split('-')[0]; // get rid of .txt extention and - Copy (number) postfix
             card = card.Split('\\')[filePathLength]; // get rid of file path
             Console.WriteLine(card);
 
             GetUserReaction(LastCardPickUpRaw);
-        }
-        public override void GetRandomCard(int amount)
-        {
-            if (amount < 1)
-            {
-                throw new ArgumentOutOfRangeException();
-            }
-            else
-            {
-                Random rnd = new Random();
-                while (amount != 0)
-                {
-                    amount--;
-                    cardIndex = rnd.Next(Cards.Length);
-                    string card = Cards[cardIndex];
-                    LastCardPickUpRaw = Cards[cardIndex];
-
-                    card = card.Split('-')[0]; // get rid of .txt extention and - Copy (number) postfix
-                    card = card.Split('\\')[filePathLength]; // get rid of file path
-                    Console.WriteLine(card);
-
-                    GetUserReaction(LastCardPickUpRaw);
-                }
-            }
         }
 
         private void GetUserReaction(string fullPath)
