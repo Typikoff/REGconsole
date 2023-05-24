@@ -19,12 +19,15 @@ namespace REG
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Greetings! I, REG the Consoleman, am ready to help your brain computer \nto handle some unpredictable events that will happen, while simulating civilizations. \nAwaiting for your orders!");
+
             while (true)
             {
 
                 string[] deckName = GetDeckName();
                 if (deckName[0] == "quit")
                 {
+                    Console.WriteLine("Thanks for Your interactions!");
                     Environment.Exit(0);
                 }
 
@@ -59,10 +62,8 @@ namespace REG
 
                         break;
                     default:
-                        {
                             Console.WriteLine("Please follow the correct sintax \"<DeckName> <Integer>\" or \"<DeckName>\"");
                             break;
-                        }
                 }
             }
         }
@@ -157,37 +158,69 @@ namespace REG
 
         private void CardInteractions(int index)
         {
-            string card = Cards[index];
-            LastCardPickUpRaw = Cards[index];
+            try
+            {
+                string card = Cards[index];
+                LastCardPickUpRaw = Cards[index];
 
-            card = card.Split('-')[0]; // get rid of .txt extention and - Copy (number) postfix
-            card = card.Split('\\')[filePathLength]; // get rid of file path
-            Console.WriteLine(card);
+                card = card.Split('-')[0]; // get rid of .txt extention and - Copy (number) postfix
+                card = card.Split('\\')[filePathLength]; // get rid of file path
+                Console.WriteLine(card);
 
-            GetUserReaction(LastCardPickUpRaw);
+                GetUserReaction(LastCardPickUpRaw);
+            }
+            catch (Exception) 
+            { 
+                Console.WriteLine("Invalid input. Try something else.");
+            }
         }
 
         private void GetUserReaction(string fullPath)
         {
             string? reaction = Console.ReadLine();
-            switch (reaction)
+            Random rnd = new Random();
+            while (reaction != "")
             {
-                case "quit":
-                    Environment.Exit(0);
-                    break;
-                case "what":
-                    // card description
-                    Console.WriteLine(GetCardInfo(fullPath)[0]);
-                    break;
-                case "why":
-                    // card arrival note
-                    Console.WriteLine(GetCardInfo(fullPath)[1]);
-                    break;
-                case "what why":
-                    // description + arrival note
-                    Console.WriteLine(GetCardInfo(fullPath)[0]);
-                    Console.WriteLine(GetCardInfo(fullPath)[1]);
-                    break;
+                switch (reaction)
+                {
+                    case "quit":
+                        Console.WriteLine("Thanks for Your interactions!");
+                        Environment.Exit(0);
+                        break;
+                    case "what": // card description
+                        Console.WriteLine("Card description:");
+                        Console.WriteLine(GetCardInfo(fullPath)[0]);
+                        break;
+                    case "why": // card arrival note
+                        Console.WriteLine("Card arrival note:");
+                        Console.WriteLine(GetCardInfo(fullPath)[1]);
+                        break;
+                    case "what why": // description + arrival note
+                        Console.WriteLine("Card description:");
+                        Console.WriteLine(GetCardInfo(fullPath)[0]);
+                        Console.WriteLine("Card arrival note:");
+                        Console.WriteLine(GetCardInfo(fullPath)[1]);
+                        break;
+                    case "coin":
+                        Console.WriteLine(rnd.Next(2) == 1 ? "You got Heads" : "You got Tails");
+                        break;
+                    case "dice":
+                        Console.WriteLine($"You roll {rnd.Next(6) + 1}");
+                        break;
+                    case "super dice": // allows User to set right limit to random
+                        Console.WriteLine("Please set a number of sides");
+                        try
+                        {
+                            int sides = Convert.ToInt32(Console.ReadLine());
+                            Console.WriteLine($"You roll {rnd.Next(sides) + 1}");
+                        }
+                        catch (Exception)
+                        {
+                            Console.WriteLine("Please use an integer number that is more than 1.");
+                        }
+                        break;
+                }
+                reaction = Console.ReadLine();
             }
 
 
