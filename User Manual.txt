@@ -1,0 +1,76 @@
+							How to use REG
+
+First question needs to be "Why to use REG?".
+And it is quite simple: to help you with simulations and random events, which should occur.
+
+So, REG has two working mods: either one-card pick, or multiple card pick.
+
+
+Question: Can you use multiple pick with one card?
+Yes, you can. One-card pick can be used for annual events, for example.
+For all events that meant to occur once per something. They are not dependant on size or activity - they are unescapable, yet rare.
+
+Multiple card pick events are dependant on size, activity or just your mood. One event per 10 people per town, as an example.
+
+
+Question: How does REG work?
+In order to pick a card, REG must first get a deck. To put it simple - it is a folder with some .txt files. They are your cards.
+Decks are stored inside larger directories. There are three of them:
+
+CardSamples - stores originals of cards for PeoplePerRealmDecks.
+PeoplePerRealmDecks - stores multiple pick decks. (also reffered as PPRD)
+StateTypeDecks - stores one-card pick decks. (also reffered as STD)
+
+
+Question: What purpose serves CardSamples folder?
+It stores originals of cards for PPRD. Cards for STD are unique, but many PPRD have repeating cards. It just saves your time, when filling new deck.
+Also REG requires all cards to end with "- Copy().txt".
+
+
+Question: Are there other special requerments for cards?
+Apart form "- Copy().txt" ending, which can be achieved via copy and paste of original file, there are two more:
+
+Card must be .txt file with strictly 2 lines in it.
+First line called "description". Just an explanation, what the card does.
+Second line called "arrival note". Explains why the card is in that deck.
+
+Card name must not contain '-' symbol, with an exeption of the one before "Copy()".
+
+Note, that that part of card's full name before '-' is the name, that part will be shown, when card is taken.
+
+
+Question: How can I choose a deck?
+When REG starts, it is waiting for you to type deckname. Just type STD name into console.
+
+
+Question: Is it that simple?
+Yes, but it does not end just here. After REG outputs a card, it is waiting for your reaction. You have 3 different options: 
+
+Press "Enter" key to finish action with this card.
+Express your exitment or disappointment via typing in console and get silent, understanding reaction form REG.
+Use some special commands. (about them later)
+
+
+Question: How can I choose a PPRD?
+Just as STD, but with a number of cards to be taken. Use Space as a separator.
+After that you will get an interaction with every card taken.
+
+
+Question: So, what are the special commands?
+Firstly, there is "quit". It ... quits REG. It also can be used even if there is no deck chosen.
+
+Command "what" outputs you card's description.
+Command "why" outputs you card's arrival note.
+Command "what why" combines previous two commands.
+
+Command "coin" randomly selects heads or tails. (0-1 random)
+Command "dice" randomly selects one of the six side of a cube. (1-6 random)
+
+Command "super dice" allows user to use a dice with custom amount of sides.
+It will ask for amount from user and return random mumber. (usefull for d20, or percents)
+
+Note, that commands have no question marks and separator is "Space".
+
+
+Question: What happens, when all picked cards were shown?
+Afer that, deck closes itself. You can either choose another deck or quit.
