@@ -48,8 +48,8 @@ namespace REG
                         try
                         {
                             int amnt = Convert.ToInt32(deckName[1]);
-                            Deck deck2 = new Deck(deckName[0], amnt);
-                            deck2.GetRandomCard(amnt);
+                            Deck deck2 = new Deck(deckName[0], ConvertPeopleToCards(amnt));
+                            deck2.GetRandomCard(ConvertPeopleToCards(amnt));
                         }
                         catch (FormatException)
                         {
@@ -93,6 +93,18 @@ namespace REG
                 return part;
             }
         }
+
+        static int ConvertPeopleToCards(int amount)
+        {
+            decimal amountDecimal = Convert.ToDecimal(amount);
+            amountDecimal /= 10;
+            int result = Convert.ToInt32(Math.Round(amountDecimal, 0, MidpointRounding.AwayFromZero));
+            if (result == 0)
+            {
+                return 1;
+            }
+            return result;
+        }
     }
 
     class Deck : DeckInteractions
@@ -132,7 +144,7 @@ namespace REG
         {
             if (amount < 1 || amount >= Cards.Length)
             {
-                Console.WriteLine("Please take numbers no less than one and less than the deck can maximum offer");
+                Console.WriteLine("Please take numbers no less than zero and less than the deck can maximum offer multiplied by ten.");
             }
             else
             {
