@@ -503,6 +503,453 @@ namespace REG
                         Console.WriteLine(firstContent != secondContent ? $"The chest contained {firstContent}. But after carefully looking, you found a hidden part, which contained {secondContent}" : $"You got your hands on a really large amount of {firstContent}");
                         userReaction = "";
                         break;
+                    case "Cataclysm ": // TODO finish it
+                        string[] listOfCataclisms = { "Earthquake", "Meteorite", "Drougth", "Flood", "Pollution", "Wildfire", "Avalance" }; // what could happen
+                        string[] clockWiseDirections9 = { "North", "North-East", "East", "South-East", "South", "South-West", "West", "North-West", "Center" }; // possible location of dissaster
+                        Console.WriteLine("Your state suffered a natural disaster. If it impossible, type something (some disasters are region-specific).");
+                        while (userReaction != "")
+                        {
+                            string chosenEvent = listOfCataclisms[rnd.Next(listOfCataclisms.Length)]; // for random disaster
+                            switch (chosenEvent) // for specific reaction to each
+                            {
+                                case "Earthquake": //      |||            selects random part of a state               |||
+                                    Console.WriteLine($"The {clockWiseDirections9[rnd.Next(clockWiseDirections9.Length)]} part of your country was struck with an Earthquake.");
+                                    break;
+                                case "Meteorite":
+                                    Console.WriteLine($"The {clockWiseDirections9[rnd.Next(clockWiseDirections9.Length)]} part of your country was hit by a Meteorite.");
+                                    break;
+                                case "Drougth":
+                                    Console.WriteLine($"An extreme Drougth fell upon your country. The {clockWiseDirections9[rnd.Next(clockWiseDirections9.Length)]} part suffered the most.");
+                                    break;
+                                case "Flood": // no need for specific location, flood is whereas river is
+                                    Console.WriteLine("Due to heavy rains, water levels in nearby river have rised a lot. Unexpected Flood swept the shores.");
+                                    break;
+                                case "Pollution":
+                                    Console.WriteLine($"Lack of nature-conserving measures with execive resource exploitation resulted in a heavy Pollution in the {clockWiseDirections9[rnd.Next(clockWiseDirections9.Length)]} part of your country.");
+                                    break;
+                                case "Wildfire":
+                                    Console.WriteLine($"Hot climate with a lack of rains provoked a Wildfire in the {clockWiseDirections9[rnd.Next(clockWiseDirections9.Length)]} part of your country.");
+                                    break;
+                                case "Avalance": // no need for specific location, it happens just with most snowwy mountain
+                                    Console.WriteLine("As snow melted in your mountains, fast and enourmous Avalance fell upon.");
+                                    break;
+
+                            }
+
+                            userReaction = Console.ReadLine();
+                        }
+                        break;
+                    case "Corruption ":
+                        Console.WriteLine("Please type down an amount of current state sitizens.");
+                        try
+                        {
+                            AmountOfPeople = Convert.ToInt32( Console.ReadLine() );
+                            Console.WriteLine($"A person number {rnd.Next(AmountOfPeople)+1} was seen in some corruption sqeemes.");
+                        }
+                        catch (FormatException)
+                        { Console.WriteLine("It is quite impossible to have none..."); }
+                        userReaction = "";
+                        break;
+                    case "HSR ": // High Society Request or people demanding rights!
+                        string[] demands = { "Social polices", "Cultural sphere", "Working conditions", "Living conditions", "State-specific uniqenesses", "all branches: Social, Cultural, Working and Living conditions, and some state-specific uniqe things" };
+                        Console.WriteLine($"With society growth, requests are also rizing. Your people are demanding an improovement of {demands[rnd.Next(demands.Length)]}.");
+                        userReaction = "";
+                        break;
+                    case "Labor Migrants ": //          5-10 migrants
+                        Console.WriteLine($"A group of {rnd.Next(5, 11)} Labor Migrants came to your country for one year.");
+                        userReaction = "";
+                        break;
+                    case "Suicide ":
+                        Console.WriteLine("Please type a number of those with Happiness below 30%.");
+                        try
+                        {
+                            int userInput = Convert.ToInt32( Console.ReadLine() );
+                            if (userInput == 0) userInput = 1/userInput; // roundabout way to go to catch block, if user types '0'
+                            Console.WriteLine($"Among them, a person standing {rnd.Next(userInput)+1} commits it.");
+                        }
+                        catch
+                        {
+                            Console.WriteLine($"Better off joking. One should commit it. Fate is predetermined. The person number {rnd.Next(AmountOfPeople)+1} did it.");
+                        }
+                        userReaction = "";
+                        break;
+                    // state-spesific events
+                    case "Crown's Patronage ":
+                        switch (rnd.Next(3))
+                        {
+                            case 0: 
+                                Console.WriteLine("Some unnamed talent presented you with a masterpiece: An unforgettably exprescive Poem.");
+                                break;
+                            case 1:
+                                Console.WriteLine("Some unnamed talent presented you with a masterpiece: An indifferent from reality Painting.");
+                                break;
+                            case 2:
+                                Console.WriteLine("Some unnamed talent presented you with a masterpiece: An incredibly harmonizing Melody.");
+                                break;
+                        }
+                        userReaction = "";
+                        break;
+                    case "Unification ":
+                        int randomAmount2 = 7; // standart amount for new clan
+                        Console.WriteLine("A new Clan had settled in your state. Be ready to register newcomes.");
+                        while (randomAmount2 != 0) // loop for each person
+                        {
+                            int randomIndex1 = rnd.Next(6); // for person's education and fighting capacity 0-2 nothing, 3 only education, 4 only fighting capacity, 5 for both
+                            switch (randomIndex1) // each person's characteristics
+                            {                     // this strange formula for age produces average 30-35 result. Hovever, people with age of 20 or 50 are also possible.
+                                case 3: // only education
+                                    int educationIndex = rnd.Next(6); // for deciding optimal chances: 1 is common (0-2), 2 is rare (3-4), 3 is the rarets (5)
+                                    if (educationIndex == 5) educationIndex = 3;
+                                    else if (educationIndex > 2) educationIndex = 2;
+                                    else educationIndex = 1;
+                                    Console.WriteLine($"Age: {rnd.Next(10, 25) + rnd.Next(10, 25)} ||| Gender: {(rnd.Next(2) == 0 ? "Male" : "Female")} ||| Education: {educationIndex} ||| Fichting capacity: 0.");
+                                    break;
+                                case 4: // only figthing cap
+                                    int fightingCapacity = rnd.Next(6); // for deciding optimal chances: 1 is common (0-2), 2 is rare (3-4), 3 is the rarets (5)
+                                    if (fightingCapacity == 5) fightingCapacity = 3;
+                                    else if (fightingCapacity > 2) fightingCapacity = 2;
+                                    else fightingCapacity = 1;
+                                    Console.WriteLine($"Age: {rnd.Next(10, 25) + rnd.Next(10, 25)} ||| Gender: {(rnd.Next(2) == 0 ? "Male" : "Female")} ||| Education: 0 ||| Fichting capacity: {fightingCapacity}.");
+                                    break;
+                                case 5: //both
+                                    int educationIndex1 = rnd.Next(6); // for deciding optimal chances: 1 is common (0-2), 2 is rare (3-4), 3 is the rarets (5)
+                                    if (educationIndex1 == 5) educationIndex1 = 3;
+                                    else if (educationIndex1 > 2) educationIndex1 = 2;
+                                    else educationIndex1 = 1;
+
+                                    int fightingCapacity1 = rnd.Next(6); // for deciding optimal chances: 1 is common (0-2), 2 is rare (3-4), 3 is the rarets (5)
+                                    if (fightingCapacity1 == 5) fightingCapacity1 = 3;
+                                    else if (fightingCapacity1 > 2) fightingCapacity1 = 2;
+                                    else fightingCapacity1 = 1;
+
+                                    Console.WriteLine($"Age: {rnd.Next(10, 25) + rnd.Next(10, 25)} ||| Gender: {(rnd.Next(2) == 0 ? "Male" : "Female")} ||| Education: {educationIndex1} ||| Fichting capacity: {fightingCapacity1}.");
+                                    break;
+                                default: // none
+                                    Console.WriteLine($"Age: {rnd.Next(10, 25) + rnd.Next(10, 25)} ||| Gender: {(rnd.Next(2) == 0 ? "Male" : "Female")} ||| Education: 0 ||| Fichting capacity: 0.");
+                                    break;
+                            }
+                            Console.ReadLine();
+                            randomAmount2 -= 1;
+                        }
+                        userReaction = "";
+                        break;
+                    case "Coins Minting ":
+                        Console.WriteLine("Please type down an amount of current state sitizens.");
+                        try
+                        {
+                            AmountOfPeople = Convert.ToInt32(Console.ReadLine());
+                            if (AmountOfPeople > 0)
+                            {
+                                Console.WriteLine($"You got {AmountOfPeople} golden ingots, {AmountOfPeople * 2} silver ingots and {AmountOfPeople * 5} copper ingots."); // thing below makes it easyer to get them in Minecraft
+                                Console.WriteLine($"In convenient format: {AmountOfPeople / 64} stacks and {AmountOfPeople % 64} golden ingots, {AmountOfPeople / 32} stacks and {AmountOfPeople * 2 % 64} silver ingots, {AmountOfPeople * 5 / 64} stacks and {AmountOfPeople * 5 % 64} copper ingots.");
+                            }                                                                                                               // same as Amount * 2 / 64         but here it can change result
+                            else { Console.WriteLine("Please stop joking about your followers. They will get angry."); }
+                        }                                                                                                               
+                        catch (FormatException)
+                        { Console.WriteLine("Invalid amount of people. Try to type normal integers."); }
+                        userReaction = "";
+
+                        break;
+                    case "Escapers ":
+                        Console.WriteLine("Some prizoners tryed to escape! Decide, wheather or not it was successfull, based on security quality and conditions of detention.\nIf it was unsuccessfull, press Enter, if not - type an amount of prizoners.");
+                        userReaction = Console.ReadLine();
+                        if (userReaction != "") // empty string stands for no success
+                        {
+                            try
+                            {
+                                int numberOfPrizoners = Convert.ToInt32(userReaction);
+                                if (numberOfPrizoners <= 0) // anty-trollong def
+                                {
+                                    Console.WriteLine("Looks like this Punishment colony does not serve it's purpose. Greatly ashamed, first 5 stuff members deserted.");
+                                }
+                                else if (numberOfPrizoners <= 5) // 5 is exect amount of escapers
+                                {
+                                    Console.WriteLine("All prizoners escaped!");
+                                }
+                                else // normal situation
+                                {
+                                    int randomIndexOfPrixoner, indexer = 5;
+                                    int[] indexesOfPrizoners = new int[indexer];
+                                    while (indexer > 0) // generation of random 5 numbers
+                                    {
+                                        randomIndexOfPrixoner = rnd.Next(numberOfPrizoners) + 1;
+                                        if (!(indexesOfPrizoners.Contains(randomIndexOfPrixoner)))
+                                        {
+                                            indexesOfPrizoners[indexer - 1] = randomIndexOfPrixoner;
+                                            indexer--;
+                                        }
+                                    }
+                                    Array.Sort(indexesOfPrizoners);    // for order in array
+                                    Array.Reverse(indexesOfPrizoners); // it is easyer to delete elements from the end, because numeration will not change
+                                    Console.Write($"Kriminals with numbers");
+                                    foreach (int index in indexesOfPrizoners)
+                                    {
+                                        Console.Write(" " + Convert.ToString(index));
+                                    }
+                                    Console.WriteLine(" had escaped.");
+                                }
+                            }
+                            catch (FormatException)
+                            {
+                                Console.WriteLine("You are saying rather intresting things. Then first 5 prizoners escaped.");
+                            }
+                        }
+                        else
+                        {
+                            userReaction = "";
+                        }
+                        break;
+                    case "Murder! ":
+                        Console.WriteLine("A deadbody was found. In order to identify the victim, type an amount of people.");
+                        try
+                        {
+                            AmountOfPeople = Convert.ToInt32(Console.ReadLine());
+                            if (AmountOfPeople < 1)
+                            {   // small joke, just to enlight QA
+                                Console.WriteLine("Well, everybody is just dead by now. What shall we do? We need to find a murder or commit one. But there is only one person here - You, the user. So, my proposal is like: I'll generate an event, 'User's death', You will somehow die from this, and I, REG, will be the culprit. Sounds wonderfull, isn't it?");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"After some investigation, the deadbody was identifyed. It was person with number {rnd.Next(AmountOfPeople)+1}. Now execute the prizoner, who did it.");
+                            }
+                        }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine("Please use integers for amounts. It's like ... a general rule? Anyway, dead person's number was 1. Now execute the prizoner, who did it.");
+                        }
+                        userReaction = "";
+                        break;
+                    case "Refillment of Cameras ":
+                        Console.WriteLine("A new batch of kriminals arrived, in total amount of 25. Be ready to register them.");
+                        int kriminalsToCreate = 25;
+                        while (kriminalsToCreate > 0)
+                        {
+                            int randomIndex1 = rnd.Next(6); // for person's education and fighting capacity 0-2 nothing, 3 only education, 4 only fighting capacity, 5 for both
+                            switch (randomIndex1) // each person's characteristics, redused max value for kriminals
+                            {                     // this strange formula for age produces average 30-35 result. Hovever, people with age of 20 or 50 are also possible.
+                                case 3: // only education
+                                    int educationIndex = rnd.Next(6); // for deciding optimal chances: 1 is common (0-3), 2 is rare (4-5)
+                                    if (educationIndex >= 4) educationIndex = 2;
+                                    else educationIndex = 1;
+                                    Console.WriteLine($"Age: {rnd.Next(10, 25) + rnd.Next(10, 25)} ||| Gender: {(rnd.Next(2) == 0 ? "Male" : "Female")} ||| Education: {educationIndex} ||| Fichting capacity: 0.");
+                                    break;
+                                case 4: // only figthing cap
+                                    int fightingCapacity = rnd.Next(6); // for deciding optimal chances: 1 is common (0-3), 2 is rare (4-5)
+                                    if (fightingCapacity >= 4) fightingCapacity = 2;
+                                    else fightingCapacity = 1;
+                                    Console.WriteLine($"Age: {rnd.Next(10, 25) + rnd.Next(10, 25)} ||| Gender: {(rnd.Next(2) == 0 ? "Male" : "Female")} ||| Education: 0 ||| Fichting capacity: {fightingCapacity}.");
+                                    break;
+                                case 5: //both
+                                    int educationIndex1 = rnd.Next(6); // for deciding optimal chances: 1 is common (0-3), 2 is rare (4-5)
+                                    if (educationIndex1 >= 4) educationIndex1 = 2;
+                                    else educationIndex1 = 1;
+
+                                    int fightingCapacity1 = rnd.Next(6); // for deciding optimal chances: 1 is common (0-3), 2 is rare (4-5)
+                                    if (fightingCapacity1 >= 4) fightingCapacity1 = 2;
+                                    else fightingCapacity1 = 1;
+
+                                    Console.WriteLine($"Age: {rnd.Next(10, 25) + rnd.Next(10, 25)} ||| Gender: {(rnd.Next(2) == 0 ? "Male" : "Female")} ||| Education: {educationIndex1} ||| Fichting capacity: {fightingCapacity1}.");
+                                    break;
+                                default: // none
+                                    Console.WriteLine($"Age: {rnd.Next(10, 25) + rnd.Next(10, 25)} ||| Gender: {(rnd.Next(2) == 0 ? "Male" : "Female")} ||| Education: 0 ||| Fichting capacity: 0.");
+                                    break;
+                            }
+                            Console.ReadLine();
+                            kriminalsToCreate--;
+                        }
+                        userReaction = "";
+                        break;
+                    case "Call of the Horizon ":
+                        int numberOfColonists = 5; // constant value for this card
+                        Console.WriteLine("A group of 5 people of your states dominant nationality and religy separated to establish another settlement (or colony).");
+                        Console.WriteLine("Do not forget to register them, or they woun't count as your citizens.");
+                        while (numberOfColonists != 0) // loop for each person
+                        {
+                            int randomIndex1 = rnd.Next(6); // for person's education and fighting capacity 0-2 nothing, 3 only education, 4 only fighting capacity, 5 for both
+                            switch (randomIndex1) // each person's characteristics
+                            {                     // this strange formula for age produces average 30-35 result. Hovever, people with age of 20 or 50 are also possible.
+                                case 3: // only education
+                                    int educationIndex = rnd.Next(6); // for deciding optimal chances: 1 is common (0-2), 2 is rare (3-4), 3 is the rarets (5)
+                                    if (educationIndex == 5) educationIndex = 3;
+                                    else if (educationIndex > 2) educationIndex = 2;
+                                    else educationIndex = 1;
+                                    Console.WriteLine($"Age: {rnd.Next(10, 25) + rnd.Next(10, 25)} ||| Gender: {(rnd.Next(2) == 0 ? "Male" : "Female")} ||| Education: {educationIndex} ||| Fichting capacity: 0.");
+                                    break;
+                                case 4: // only figthing cap
+                                    int fightingCapacity = rnd.Next(6); // for deciding optimal chances: 1 is common (0-2), 2 is rare (3-4), 3 is the rarets (5)
+                                    if (fightingCapacity == 5) fightingCapacity = 3;
+                                    else if (fightingCapacity > 2) fightingCapacity = 2;
+                                    else fightingCapacity = 1;
+                                    Console.WriteLine($"Age: {rnd.Next(10, 25) + rnd.Next(10, 25)} ||| Gender: {(rnd.Next(2) == 0 ? "Male" : "Female")} ||| Education: 0 ||| Fichting capacity: {fightingCapacity}.");
+                                    break;
+                                case 5: //both
+                                    int educationIndex1 = rnd.Next(6); // for deciding optimal chances: 1 is common (0-2), 2 is rare (3-4), 3 is the rarets (5)
+                                    if (educationIndex1 == 5) educationIndex1 = 3;
+                                    else if (educationIndex1 > 2) educationIndex1 = 2;
+                                    else educationIndex1 = 1;
+
+                                    int fightingCapacity1 = rnd.Next(6); // for deciding optimal chances: 1 is common (0-2), 2 is rare (3-4), 3 is the rarets (5)
+                                    if (fightingCapacity1 == 5) fightingCapacity1 = 3;
+                                    else if (fightingCapacity1 > 2) fightingCapacity1 = 2;
+                                    else fightingCapacity1 = 1;
+
+                                    Console.WriteLine($"Age: {rnd.Next(10, 25) + rnd.Next(10, 25)} ||| Gender: {(rnd.Next(2) == 0 ? "Male" : "Female")} ||| Education: {educationIndex1} ||| Fichting capacity: {fightingCapacity1}.");
+                                    break;
+                                default: // none
+                                    Console.WriteLine($"Age: {rnd.Next(10, 25) + rnd.Next(10, 25)} ||| Gender: {(rnd.Next(2) == 0 ? "Male" : "Female")} ||| Education: 0 ||| Fichting capacity: 0.");
+                                    break;
+                            }
+                            Console.ReadLine();
+                            numberOfColonists -= 1;
+                        }
+                        userReaction = "";
+                        break;
+                    case "Theft ":
+                        Console.WriteLine("One of your state's chests was found empty! Please, type down a total number of possible chests, and you will know which one was.");
+                        try
+                        {
+                            int theNumber = Convert.ToInt32(Console.ReadLine());
+                            if (theNumber <= 0) // it is impossible to have 0 chests, because every state has it's "main" chest. At this point user is just moking REG.
+                            {
+                                Console.WriteLine("You really hate normal numbers, don't you?");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"A cheest with number {rnd.Next(theNumber) + 1} was emptied.");
+                            }
+                        }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine("So you think, that messing around is funny, huh. Than, take this: ALL of state's chests are now empty. Think twice next time.");
+                        }
+                        userReaction = "";
+                        break;
+                    case "Herecy! ":
+                        Console.WriteLine("An unholy heretic was cought during his rituals. Type down an amount of people in your state, so we can identify all of theyer followers.");
+                        try
+                        {
+                            AmountOfPeople = Convert.ToInt32(Console.ReadLine());
+                            if (AmountOfPeople < 1)
+                            {
+                                Console.WriteLine("Ah, I see, no people, huh. So it was a conversation between mossy stones with a bald one.");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"Thankfully, the herecy hadn't spread jet. Only the person with number {rnd.Next(AmountOfPeople) + 1} must be subjected to execution, and predominance of the true faith will be restored.");
+                            }
+                        }
+                        catch (FormatException)
+                        {                                                                                   // to stop user from finding bugs and crashes.
+                            Console.WriteLine("Please use integers for amounts. It's like ... a general rule? But anyway, the first five persons were cought up in herecy nets. Nothing, but immidiete fire purification, can save their souls.");
+                        }
+                        userReaction = "";
+                        break;
+                    case "Religious Festival ":
+                        Console.WriteLine("An annual festival had started. Each of your state's active Religious centers recieves donations from devoted people. Let them know, how many there are such places.");
+                        try
+                        {
+                            int theNumber = Convert.ToInt32(Console.ReadLine());
+                            if (theNumber <= 0) // just in case
+                            {
+                                Console.WriteLine("The people were angry. They organised demonstrations and strikes. It all had ended only then, when ruling party promised to build at least one.");
+                            }
+                            else // 16 gold ingots and 64 bread per temple
+                            {
+                                Console.WriteLine($"The total amount of donation was {theNumber/4} stacks {theNumber%4 * 16} gold ingots and {theNumber} stacks of bread.");
+                            }
+                        }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine("As a result of such pour announcment, nobody donated even a single thing.");
+                        }
+                        userReaction = "";
+                        break;
+                    case "Fresh Batch ":
+                        Console.WriteLine("A new batch of slaves arrived, in total amount of 15. Take a note on them.");
+                        int slavesToCreate = 15;
+                        while (slavesToCreate > 0)
+                        {
+                            int randomIndex1 = rnd.Next(6); // for person's education and fighting capacity 0-2 nothing, 3 only education, 4 only fighting capacity, 5 for both
+                            switch (randomIndex1) // each person's characteristics, redused max value for kriminals, even more redused for slaves
+                            {                     // this strange formula for age produces average 30-35 result. Hovever, people with age of 20 or 50 are also possible.
+                                case 3: // only education
+                                    Console.WriteLine($"Age: {rnd.Next(10, 25) + rnd.Next(10, 25)} ||| Gender: {(rnd.Next(2) == 0 ? "Male" : "Female")} ||| Education: 1 ||| Fichting capacity: 0.");
+                                    break;
+                                case 4: // only figthing cap
+                                    Console.WriteLine($"Age: {rnd.Next(10, 25) + rnd.Next(10, 25)} ||| Gender: {(rnd.Next(2) == 0 ? "Male" : "Female")} ||| Education: 0 ||| Fichting capacity: 1.");
+                                    break;
+                                case 5: //both
+                                    Console.WriteLine($"Age: {rnd.Next(10, 25) + rnd.Next(10, 25)} ||| Gender: {(rnd.Next(2) == 0 ? "Male" : "Female")} ||| Education: 1 ||| Fichting capacity: 1.");
+                                    break;
+                                default: // none
+                                    Console.WriteLine($"Age: {rnd.Next(10, 25) + rnd.Next(10, 25)} ||| Gender: {(rnd.Next(2) == 0 ? "Male" : "Female")} ||| Education: 0 ||| Fichting capacity: 0.");
+                                    break;
+                            }
+                            Console.ReadLine();
+                            slavesToCreate--;
+                        }
+                        userReaction = "";
+                        break;
+                    case "Mysterious Revenge ":
+                        Console.WriteLine("Deadbody was found. Please type down total number of non-slave people in your state.");
+                        try
+                        {
+                            AmountOfPeople = Convert.ToInt32(Console.ReadLine());
+                            if (AmountOfPeople < 1)
+                            {
+                                Console.WriteLine("Everybody is a slave! What an awesome idea. So everybody just rebel and scatter across nearby countries. Yours is nonexictant now.");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"After some investigation, it turns out, that the {rnd.Next(AmountOfPeople) + 1}th non-slave was killed. Hovewer, the perpetraitor wasn't found.");
+                            }
+                        }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine("All your state's leading representatives were found dead, not just that one.");
+                        }
+                        userReaction = "";
+                        break;
+                    case "Property Lease ": // TODO finish it
+                        Console.WriteLine("It is time to take your money for property lease! Plese type down an amount of leaseable objects.");
+                        bool incorrectInput = true;
+
+                        while (incorrectInput)
+                        {
+                            try
+                            {
+                                incorrectInput = false; // Correct format: 4 34 4 5 1
+                                Console.WriteLine("The input format is: number of 1) boats 2) donkeys and mulls 3) Horses and small ships 4) Battle ships 5) Trade ships. Use ' ' (space) as a separator.");
+                                userReaction = Console.ReadLine();
+                                if (userReaction != "" && userReaction != null)
+                                {
+                                    string[] complexUserInput = userReaction.Split(" ");
+                                    int[] KoefficientsForProperty = {1, 2, 3, 5, 9};
+                                    int thePrice = 0;
+                                    for (int i = 0; i < KoefficientsForProperty.Length; i++)
+                                    {
+                                        thePrice += Convert.ToInt32(complexUserInput[i]) * KoefficientsForProperty[i];
+                                    }
+                                    Console.WriteLine($"Total amount of value in gold: {thePrice/64} stacks and {thePrice%64} ingots.");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("No property - no money.");
+                                }
+                            }
+                            catch (Exception)
+                            {
+                                incorrectInput = true;
+                                Console.WriteLine("Well, this imput format is definitly hard to understand, but I belive in you! Keep trying!");
+                            }
+                        }
+                        userReaction = "";
+                        break;
+                    case "Long Live the Dynasty! ":
+                        Console.WriteLine($"A new {(rnd.Next(2) == 1 ? "male" : "female")} member of the current dynasty was born!");
+                        Console.WriteLine("Due to that fact, there was a great festival and nobody had worked. Also food consumption for this turn is doubled.");
+                        userReaction = "";
+                        break;
                     default:
                         userReaction = "";
                         showEndMessage = false; // for speeding process with cards without Expanded action
