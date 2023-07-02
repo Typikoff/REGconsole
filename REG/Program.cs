@@ -12,6 +12,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Reflection.Metadata.Ecma335;
+using System.Reflection;
 
 namespace REG
 {
@@ -1048,8 +1049,9 @@ namespace REG
     abstract class DeckInteractions
     {
         public int filePathLength = 8;
-        public string stateDirPath = @"C:\Users\Typik\REG\REG\Decks\StateTypeDecks\";
-        public string pPRDirPath = @"C:\Users\Typik\REG\REG\Decks\PeoplePerRealmDecks\";
+        public static string startPath = AppDomain.CurrentDomain.BaseDirectory.Remove(AppDomain.CurrentDomain.BaseDirectory.IndexOf("bin")); // gets path with username (to work on other devices) and cuts unnececary parts of it.
+        public string stateDirPath = @"Decks\StateTypeDecks\".Insert(0, startPath); // to ensure usage on other devices
+        public string pPRDirPath = @"Decks\PeoplePerRealmDecks\".Insert(0, startPath);
 
         public abstract void GetRandomCard();
         public abstract void GetRandomCard(int amount);
