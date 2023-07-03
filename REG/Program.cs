@@ -4,7 +4,7 @@
 // The rules are basicly turning Minecraft into a strategy game, Civilization-like game
 // With the Project growing larger, it's getting more and more harder to maintain some random events, which occured in every state every turn
 // The Events are based on goverment type, amount of population and some laws
-// Paper card system cann't be normally used at this point: it takes around one hour just to start a  turn
+// Paper card system cann't be normally used at this point: it takes around one hour just to start a turn
 // So I put on my bravary and dedication to create this ambitious (for me) project.
 
 using System;
@@ -187,7 +187,7 @@ namespace REG
                 LastCardPickUpRaw = Cards[index];
 
                 Card = Card.Split('-')[0]; // get rid of .txt extention and - Copy (number) postfix
-                Card = Card.Split('\\')[filePathLength]; // get rid of file path
+                Card = Card.Split('\\')[stateDirPath.Split("\\").Length]; // get rid of file path. Also stateDirPath and pPRDirPath must have equal length, so it's indifferent, which to use here
                 Console.WriteLine(Card);
 
                 DoExpandedCardsActions(Card);
@@ -911,7 +911,7 @@ namespace REG
                         }
                         userReaction = "";
                         break;
-                    case "Property Lease ": // TODO finish it
+                    case "Property Lease ":
                         Console.WriteLine("It is time to take your money for property lease! Plese type down an amount of leaseable objects.");
                         bool incorrectInput = true;
 
@@ -919,7 +919,7 @@ namespace REG
                         {
                             try
                             {
-                                incorrectInput = false; // Correct format: 4 34 4 5 1
+                                incorrectInput = false; // Correct format example: 4 34 4 5 1
                                 Console.WriteLine("The input format is: number of 1) boats 2) donkeys and mulls 3) Horses and small ships 4) Battle ships 5) Trade ships. Use ' ' (space) as a separator.");
                                 userReaction = Console.ReadLine();
                                 if (userReaction != "" && userReaction != null)
@@ -956,7 +956,12 @@ namespace REG
                         showEndMessage = false; // for speeding process with cards without Expanded action
                         break;
                 }
-                if (userReaction != "")
+                if (userReaction == "quit") // just another convinient exit
+                {
+                    Console.WriteLine("Thanks for Your interactions!");
+                    Environment.Exit(0);
+                }
+                if (userReaction != "") // for looping that enables user to interact with Expanded actions
                 {
                     userReaction = Console.ReadLine();
                 }
@@ -1048,10 +1053,9 @@ namespace REG
 
     abstract class DeckInteractions
     {
-        public int filePathLength = 8;
         public static string startPath = AppDomain.CurrentDomain.BaseDirectory.Remove(AppDomain.CurrentDomain.BaseDirectory.IndexOf("bin")); // gets path with username (to work on other devices) and cuts unnececary parts of it.
-        public string stateDirPath = @"Decks\StateTypeDecks\".Insert(0, startPath); // to ensure usage on other devices
-        public string pPRDirPath = @"Decks\PeoplePerRealmDecks\".Insert(0, startPath);
+        public static string stateDirPath = @"Decks\StateTypeDecks\".Insert(0, startPath); // to ensure usage on other devices
+        public static string pPRDirPath = @"Decks\PeoplePerRealmDecks\".Insert(0, startPath);
 
         public abstract void GetRandomCard();
         public abstract void GetRandomCard(int amount);
