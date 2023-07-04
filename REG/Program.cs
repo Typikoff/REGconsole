@@ -404,90 +404,14 @@ namespace REG
                         int randomAmount = rnd.Next(6)+1; // in one card 1-6 people
                         Console.WriteLine($"A group with a total number of {randomAmount} people of your states dominant nationality and religy arrived.");
                         Console.WriteLine("Be ready to properly register them.");
-                        while (randomAmount != 0) // loop for each person
-                        {
-                            int randomIndex1 = rnd.Next(6); // for person's education and fighting capacity 0-2 nothing, 3 only education, 4 only fighting capacity, 5 for both
-                            switch (randomIndex1) // each person's characteristics
-                            {                     // this strange formula for age produces average 30-35 result. Hovever, people with age of 20 or 50 are also possible.
-                                case 3: // only education
-                                    int educationIndex = rnd.Next(6); // for deciding optimal chances: 1 is common (0-2), 2 is rare (3-4), 3 is the rarets (5)
-                                    if (educationIndex == 5) educationIndex = 3;
-                                    else if (educationIndex > 2) educationIndex = 2;
-                                    else educationIndex = 1;
-                                    Console.WriteLine($"Age: {rnd.Next(10, 25) + rnd.Next(10, 25)} ||| Gender: {(rnd.Next(2) == 0 ? "Male" : "Female")} ||| Education: {educationIndex} ||| Fichting capacity: 0.");
-                                    break;
-                                case 4: // only figthing cap
-                                    int fightingCapacity = rnd.Next(6); // for deciding optimal chances: 1 is common (0-2), 2 is rare (3-4), 3 is the rarets (5)
-                                    if (fightingCapacity == 5) fightingCapacity = 3;
-                                    else if (fightingCapacity > 2) fightingCapacity = 2;
-                                    else fightingCapacity = 1;
-                                    Console.WriteLine($"Age: {rnd.Next(10, 25) + rnd.Next(10, 25)} ||| Gender: {(rnd.Next(2) == 0 ? "Male" : "Female")} ||| Education: 0 ||| Fichting capacity: {fightingCapacity}.");
-                                    break; 
-                                case 5: //both
-                                    int educationIndex1 = rnd.Next(6); // for deciding optimal chances: 1 is common (0-2), 2 is rare (3-4), 3 is the rarets (5)
-                                    if (educationIndex1 == 5) educationIndex1 = 3;
-                                    else if (educationIndex1 > 2) educationIndex1 = 2;
-                                    else educationIndex1 = 1;
-
-                                    int fightingCapacity1 = rnd.Next(6); // for deciding optimal chances: 1 is common (0-2), 2 is rare (3-4), 3 is the rarets (5)
-                                    if (fightingCapacity1 == 5) fightingCapacity1 = 3;
-                                    else if (fightingCapacity1 > 2) fightingCapacity1 = 2;
-                                    else fightingCapacity1 = 1;
-
-                                    Console.WriteLine($"Age: {rnd.Next(10, 25) + rnd.Next(10, 25)} ||| Gender: {(rnd.Next(2) == 0 ? "Male" : "Female")} ||| Education: {educationIndex1} ||| Fichting capacity: {fightingCapacity1}.");
-                                    break;
-                                default: // none
-                                    Console.WriteLine($"Age: {rnd.Next(10, 25) + rnd.Next(10, 25)} ||| Gender: {(rnd.Next(2) == 0 ? "Male" : "Female")} ||| Education: 0 ||| Fichting capacity: 0.");
-                                    break;
-                            }
-                            Console.ReadLine();
-                            randomAmount -= 1;
-                        }
+                        RegisterNewcomers(randomAmount);
                         userReaction = "";
                         break;
                     case "Migrants ":
                         int randomAmount1 = rnd.Next(6) + 1; // in one card 1-6 people
                         Console.WriteLine($"A group with a total number of {randomAmount1} people of random nationality and religy arrived.");
                         Console.WriteLine("In case you will accept them, be ready to properly register them.");
-                        while (randomAmount1 != 0) // loop for each person
-                        {
-                            int randomIndex1 = rnd.Next(6); // for person's education and fighting capacity 0-2 nothing, 3 only education, 4 only fighting capacity, 5 for both
-                            switch (randomIndex1) // each person's characteristics
-                            {                     // this strange formula for age produces average 30-35 result. Hovever, people with age of 20 or 50 are also possible.
-                                case 3: // only education
-                                    int educationIndex = rnd.Next(6); // for deciding optimal chances: 1 is common (0-2), 2 is rare (3-4), 3 is the rarets (5)
-                                    if (educationIndex == 5) educationIndex = 3;
-                                    else if (educationIndex > 2) educationIndex = 2;
-                                    else educationIndex = 1;
-                                    Console.WriteLine($"Age: {rnd.Next(10, 25) + rnd.Next(10, 25)} ||| Gender: {(rnd.Next(2) == 0 ? "Male" : "Female")} ||| Education: {educationIndex} ||| Fichting capacity: 0.");
-                                    break;
-                                case 4: // only figthing cap
-                                    int fightingCapacity = rnd.Next(6); // for deciding optimal chances: 1 is common (0-2), 2 is rare (3-4), 3 is the rarets (5)
-                                    if (fightingCapacity == 5) fightingCapacity = 3;
-                                    else if (fightingCapacity > 2) fightingCapacity = 2;
-                                    else fightingCapacity = 1;
-                                    Console.WriteLine($"Age: {rnd.Next(10, 25) + rnd.Next(10, 25)} ||| Gender: {(rnd.Next(2) == 0 ? "Male" : "Female")} ||| Education: 0 ||| Fichting capacity: {fightingCapacity}.");
-                                    break;
-                                case 5: //both
-                                    int educationIndex1 = rnd.Next(6); // for deciding optimal chances: 1 is common (0-2), 2 is rare (3-4), 3 is the rarets (5)
-                                    if (educationIndex1 == 5) educationIndex1 = 3;
-                                    else if (educationIndex1 > 2) educationIndex1 = 2;
-                                    else educationIndex1 = 1;
-
-                                    int fightingCapacity1 = rnd.Next(6); // for deciding optimal chances: 1 is common (0-2), 2 is rare (3-4), 3 is the rarets (5)
-                                    if (fightingCapacity1 == 5) fightingCapacity1 = 3;
-                                    else if (fightingCapacity1 > 2) fightingCapacity1 = 2;
-                                    else fightingCapacity1 = 1;
-
-                                    Console.WriteLine($"Age: {rnd.Next(10, 25) + rnd.Next(10, 25)} ||| Gender: {(rnd.Next(2) == 0 ? "Male" : "Female")} ||| Education: {educationIndex1} ||| Fichting capacity: {fightingCapacity1}.");
-                                    break;
-                                default: // none
-                                    Console.WriteLine($"Age: {rnd.Next(10, 25) + rnd.Next(10, 25)} ||| Gender: {(rnd.Next(2) == 0 ? "Male" : "Female")} ||| Education: 0 ||| Fichting capacity: 0.");
-                                    break;
-                            }
-                            Console.ReadLine();
-                            randomAmount1 -= 1;
-                        }
+                        RegisterNewcomers(randomAmount1);
                         userReaction = "";
                         break;
                     case "Resources ":
@@ -591,47 +515,9 @@ namespace REG
                         userReaction = "";
                         break;
                     case "Unification ":
-                        int randomAmount2 = 7; // standart amount for new clan
+                        const int NEWCLANINHABITANTS = 7; // standart amount for new clan
                         Console.WriteLine("A new Clan had settled in your state. Be ready to register newcomes.");
-                        while (randomAmount2 != 0) // loop for each person
-                        {
-                            int randomIndex1 = rnd.Next(6); // for person's education and fighting capacity 0-2 nothing, 3 only education, 4 only fighting capacity, 5 for both
-                            switch (randomIndex1) // each person's characteristics
-                            {                     // this strange formula for age produces average 30-35 result. Hovever, people with age of 20 or 50 are also possible.
-                                case 3: // only education
-                                    int educationIndex = rnd.Next(6); // for deciding optimal chances: 1 is common (0-2), 2 is rare (3-4), 3 is the rarets (5)
-                                    if (educationIndex == 5) educationIndex = 3;
-                                    else if (educationIndex > 2) educationIndex = 2;
-                                    else educationIndex = 1;
-                                    Console.WriteLine($"Age: {rnd.Next(10, 25) + rnd.Next(10, 25)} ||| Gender: {(rnd.Next(2) == 0 ? "Male" : "Female")} ||| Education: {educationIndex} ||| Fichting capacity: 0.");
-                                    break;
-                                case 4: // only figthing cap
-                                    int fightingCapacity = rnd.Next(6); // for deciding optimal chances: 1 is common (0-2), 2 is rare (3-4), 3 is the rarets (5)
-                                    if (fightingCapacity == 5) fightingCapacity = 3;
-                                    else if (fightingCapacity > 2) fightingCapacity = 2;
-                                    else fightingCapacity = 1;
-                                    Console.WriteLine($"Age: {rnd.Next(10, 25) + rnd.Next(10, 25)} ||| Gender: {(rnd.Next(2) == 0 ? "Male" : "Female")} ||| Education: 0 ||| Fichting capacity: {fightingCapacity}.");
-                                    break;
-                                case 5: //both
-                                    int educationIndex1 = rnd.Next(6); // for deciding optimal chances: 1 is common (0-2), 2 is rare (3-4), 3 is the rarets (5)
-                                    if (educationIndex1 == 5) educationIndex1 = 3;
-                                    else if (educationIndex1 > 2) educationIndex1 = 2;
-                                    else educationIndex1 = 1;
-
-                                    int fightingCapacity1 = rnd.Next(6); // for deciding optimal chances: 1 is common (0-2), 2 is rare (3-4), 3 is the rarets (5)
-                                    if (fightingCapacity1 == 5) fightingCapacity1 = 3;
-                                    else if (fightingCapacity1 > 2) fightingCapacity1 = 2;
-                                    else fightingCapacity1 = 1;
-
-                                    Console.WriteLine($"Age: {rnd.Next(10, 25) + rnd.Next(10, 25)} ||| Gender: {(rnd.Next(2) == 0 ? "Male" : "Female")} ||| Education: {educationIndex1} ||| Fichting capacity: {fightingCapacity1}.");
-                                    break;
-                                default: // none
-                                    Console.WriteLine($"Age: {rnd.Next(10, 25) + rnd.Next(10, 25)} ||| Gender: {(rnd.Next(2) == 0 ? "Male" : "Female")} ||| Education: 0 ||| Fichting capacity: 0.");
-                                    break;
-                            }
-                            Console.ReadLine();
-                            randomAmount2 -= 1;
-                        }
+                        RegisterNewcomers(NEWCLANINHABITANTS);
                         userReaction = "";
                         break;
                     case "Coins Minting ":
@@ -722,7 +608,7 @@ namespace REG
                         break;
                     case "Refillment of Cameras ":
                         Console.WriteLine("A new batch of kriminals arrived, in total amount of 25. Be ready to register them.");
-                        int kriminalsToCreate = 25;
+                        int kriminalsToCreate = 25; // a standart
                         while (kriminalsToCreate > 0)
                         {
                             int randomIndex1 = rnd.Next(6); // for person's education and fighting capacity 0-2 nothing, 3 only education, 4 only fighting capacity, 5 for both
@@ -761,48 +647,10 @@ namespace REG
                         userReaction = "";
                         break;
                     case "Call of the Horizon ":
-                        int numberOfColonists = 5; // constant value for this card
+                        const int NUMBEROFCOLONISTS = 5; // constant value for this card
                         Console.WriteLine("A group of 5 people of your states dominant nationality and religy separated to establish another settlement (or colony).");
                         Console.WriteLine("Do not forget to register them, or they woun't count as your citizens.");
-                        while (numberOfColonists != 0) // loop for each person
-                        {
-                            int randomIndex1 = rnd.Next(6); // for person's education and fighting capacity 0-2 nothing, 3 only education, 4 only fighting capacity, 5 for both
-                            switch (randomIndex1) // each person's characteristics
-                            {                     // this strange formula for age produces average 30-35 result. Hovever, people with age of 20 or 50 are also possible.
-                                case 3: // only education
-                                    int educationIndex = rnd.Next(6); // for deciding optimal chances: 1 is common (0-2), 2 is rare (3-4), 3 is the rarets (5)
-                                    if (educationIndex == 5) educationIndex = 3;
-                                    else if (educationIndex > 2) educationIndex = 2;
-                                    else educationIndex = 1;
-                                    Console.WriteLine($"Age: {rnd.Next(10, 25) + rnd.Next(10, 25)} ||| Gender: {(rnd.Next(2) == 0 ? "Male" : "Female")} ||| Education: {educationIndex} ||| Fichting capacity: 0.");
-                                    break;
-                                case 4: // only figthing cap
-                                    int fightingCapacity = rnd.Next(6); // for deciding optimal chances: 1 is common (0-2), 2 is rare (3-4), 3 is the rarets (5)
-                                    if (fightingCapacity == 5) fightingCapacity = 3;
-                                    else if (fightingCapacity > 2) fightingCapacity = 2;
-                                    else fightingCapacity = 1;
-                                    Console.WriteLine($"Age: {rnd.Next(10, 25) + rnd.Next(10, 25)} ||| Gender: {(rnd.Next(2) == 0 ? "Male" : "Female")} ||| Education: 0 ||| Fichting capacity: {fightingCapacity}.");
-                                    break;
-                                case 5: //both
-                                    int educationIndex1 = rnd.Next(6); // for deciding optimal chances: 1 is common (0-2), 2 is rare (3-4), 3 is the rarets (5)
-                                    if (educationIndex1 == 5) educationIndex1 = 3;
-                                    else if (educationIndex1 > 2) educationIndex1 = 2;
-                                    else educationIndex1 = 1;
-
-                                    int fightingCapacity1 = rnd.Next(6); // for deciding optimal chances: 1 is common (0-2), 2 is rare (3-4), 3 is the rarets (5)
-                                    if (fightingCapacity1 == 5) fightingCapacity1 = 3;
-                                    else if (fightingCapacity1 > 2) fightingCapacity1 = 2;
-                                    else fightingCapacity1 = 1;
-
-                                    Console.WriteLine($"Age: {rnd.Next(10, 25) + rnd.Next(10, 25)} ||| Gender: {(rnd.Next(2) == 0 ? "Male" : "Female")} ||| Education: {educationIndex1} ||| Fichting capacity: {fightingCapacity1}.");
-                                    break;
-                                default: // none
-                                    Console.WriteLine($"Age: {rnd.Next(10, 25) + rnd.Next(10, 25)} ||| Gender: {(rnd.Next(2) == 0 ? "Male" : "Female")} ||| Education: 0 ||| Fichting capacity: 0.");
-                                    break;
-                            }
-                            Console.ReadLine();
-                            numberOfColonists -= 1;
-                        }
+                        RegisterNewcomers(NUMBEROFCOLONISTS);
                         userReaction = "";
                         break;
                     case "Theft ":
@@ -867,7 +715,7 @@ namespace REG
                         break;
                     case "Fresh Batch ":
                         Console.WriteLine("A new batch of slaves arrived, in total amount of 15. Take a note on them.");
-                        int slavesToCreate = 15;
+                        int slavesToCreate = 15; // const value to this card
                         while (slavesToCreate > 0)
                         {
                             int randomIndex1 = rnd.Next(6); // for person's education and fighting capacity 0-2 nothing, 3 only education, 4 only fighting capacity, 5 for both
@@ -971,6 +819,50 @@ namespace REG
             if (showEndMessage) // for speeding process with cards without Expanded action
             {
                 Console.WriteLine("*** Expanded action ended ***");
+            }
+        }
+
+        private void RegisterNewcomers(int amountOfRandomPeopleToGenerate) // for DoExpandedCardsActions() optimization
+        {
+            Random rnd = new Random();
+            while (amountOfRandomPeopleToGenerate != 0) // loop for each person
+            {
+                int randomIndex1 = rnd.Next(6); // for person's education and fighting capacity 0-2 nothing, 3 only education, 4 only fighting capacity, 5 for both
+                switch (randomIndex1) // each person's characteristics
+                {                     // this strange formula for age produces average 30-35 result. Hovever, people with age of 20 or 50 are also possible.
+                    case 3: // only education
+                        int educationIndex = rnd.Next(6); // for deciding optimal chances: 1 is common (0-2), 2 is rare (3-4), 3 is the rarets (5)
+                        if (educationIndex == 5) educationIndex = 3;
+                        else if (educationIndex > 2) educationIndex = 2;
+                        else educationIndex = 1;
+                        Console.WriteLine($"Age: {rnd.Next(10, 25) + rnd.Next(10, 25)} ||| Gender: {(rnd.Next(2) == 0 ? "Male" : "Female")} ||| Education: {educationIndex} ||| Fichting capacity: 0.");
+                        break;
+                    case 4: // only figthing cap
+                        int fightingCapacity = rnd.Next(6); // for deciding optimal chances: 1 is common (0-2), 2 is rare (3-4), 3 is the rarets (5)
+                        if (fightingCapacity == 5) fightingCapacity = 3;
+                        else if (fightingCapacity > 2) fightingCapacity = 2;
+                        else fightingCapacity = 1;
+                        Console.WriteLine($"Age: {rnd.Next(10, 25) + rnd.Next(10, 25)} ||| Gender: {(rnd.Next(2) == 0 ? "Male" : "Female")} ||| Education: 0 ||| Fichting capacity: {fightingCapacity}.");
+                        break;
+                    case 5: //both
+                        int educationIndex1 = rnd.Next(6); // for deciding optimal chances: 1 is common (0-2), 2 is rare (3-4), 3 is the rarets (5)
+                        if (educationIndex1 == 5) educationIndex1 = 3;
+                        else if (educationIndex1 > 2) educationIndex1 = 2;
+                        else educationIndex1 = 1;
+
+                        int fightingCapacity1 = rnd.Next(6); // for deciding optimal chances: 1 is common (0-2), 2 is rare (3-4), 3 is the rarets (5)
+                        if (fightingCapacity1 == 5) fightingCapacity1 = 3;
+                        else if (fightingCapacity1 > 2) fightingCapacity1 = 2;
+                        else fightingCapacity1 = 1;
+
+                        Console.WriteLine($"Age: {rnd.Next(10, 25) + rnd.Next(10, 25)} ||| Gender: {(rnd.Next(2) == 0 ? "Male" : "Female")} ||| Education: {educationIndex1} ||| Fichting capacity: {fightingCapacity1}.");
+                        break;
+                    default: // none
+                        Console.WriteLine($"Age: {rnd.Next(10, 25) + rnd.Next(10, 25)} ||| Gender: {(rnd.Next(2) == 0 ? "Male" : "Female")} ||| Education: 0 ||| Fichting capacity: 0.");
+                        break;
+                }
+                Console.ReadLine();
+                amountOfRandomPeopleToGenerate -= 1;
             }
         }
 
