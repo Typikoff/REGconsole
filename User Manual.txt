@@ -23,7 +23,7 @@ StateTypeDecks - stores one-card pick decks. (also reffered as STD)
 
 
 Question: What purpose serves CardSamples folder?
-It stores originals of cards for PPRD. Cards for STD are unique, but many PPRD have repeating cards. It just saves your time, when filling new deck.
+It stores originals of cards for PPRD. Cards for STD are mostly unique, but many PPRD have repeating cards. It just saves your time, when filling new deck.
 Also REG requires all cards to end with "- Copy().txt".
 
 
@@ -55,9 +55,13 @@ Question: How can I choose a PPRD?
 Just as STD, but with a number of cards to be taken. Use Space as a separator.
 After that you will get an interaction with every card taken.
 
+Note, that in this version, every 10 people results in one card, so as a second parameter one should pass number of people, not cards.
+Then, an amount of cards will be calculated by REG. The code can be modifyed for other settings, thow.
+
 
 Question: So, what are the special commands?
-Firstly, there is "quit". It ... quits REG. It also can be used even if there is no deck chosen.
+Firstly, there is "quit". It ... quits REG. It also can be used even if there is no deck chosen or additional operation running (about it later).
+Why to use it? For thanks from REG and self-coolness.
 
 Command "what" outputs you card's description.
 Command "why" outputs you card's arrival note.
@@ -69,8 +73,46 @@ Command "dice" randomly selects one of the six side of a cube. (1-6 random)
 Command "super dice" allows user to use a dice with custom amount of sides.
 It will ask for amount from user and return random mumber. (usefull for d20, or percents)
 
-Note, that commands have no question marks and separator is "Space".
+Note, that commands have no question marks and separator is "Space" (blank).
 
 
 Question: What happens, when all picked cards were shown?
 Afer that, deck closes itself. You can either choose another deck or quit.
+
+
+What are the additional operations?
+Some card have their specific abilities, such as generating peoples characteristics, objects or even detailed events.
+
+When such card is being chosen, REG will go in additional operation for this card.
+Normaly, one can skip it, just by tipping the "Enter" button, thow it is not recomended.
+
+Faced with such ignorance, REG may decide to "punish" the state which took that card, but it's rare.
+
+
+How do I expand REG?
+
+It is quite simpe: just add another filefolder, place there some cards (they can pe easylly made, if new ones needed)
+Easyer to add new PPRD than STD, because of cards variety.
+Existing decks can also be modyfied (renaming them leads to no problem) or even deleted.
+
+With that, expanding and changing REG for better usage is easy. However, if newly added card needs an additional operation,
+it had to be done inside the script, but it also is not that difficult. Just don't forget a blank character at the end in the reffering string.
+
+Also, TTD (Temporary Testing Deck) is quite usefull, when creating new card, since it often uses random. 
+It serves only testing purposes, and can be delited without problems.
+
+
+What do I do, if REG is repeatedly unable to find a deck or "open" it?
+
+Firstly check the spelling of it.
+Then make sure it is in right directory (PPRD and STD have different recalls)
+Make sure, that the deck has more than 1 card and those within have right insides as well as filenames.
+
+If all obove cann't help, better reinstall REG into user's specific folder (ex: C:\Users\Username)
+If it is installed somewere else, you can directly modify DeckInteractions class to make the paths match those on your computer.
+
+
+What is the most important thing whilst using REG?
+
+Beeing gratefull to REG for taking a part of your job off your shoulders and enjoying yourself.
+Have a nice day, you there.
